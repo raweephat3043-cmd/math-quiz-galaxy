@@ -200,7 +200,7 @@ function avatarSmall(){return playerPhoto?`<img class="avatar-small" src="${play
 function menu(){clearInterval(S.tm);app.innerHTML=`<div class="card"><h2>เลือกหมวดที่ต้องการเล่น</h2><p class="player-name">${avatarSmall()}👤 ผู้เล่น: ${safeText(playerName)}</p><p class="sub">แต่ละหมวดมี 5 ข้อ (คะแนนเต็ม 11)</p><div class="grid">${CATS.map((c,i)=>`<button class="cat" style="background:${c.c}" data-i="${i}"><span class="ic">${c.i}</span><b>${c.n}</b><small>5 ข้อ</small></button>`).join('')}<button class="cat" style="background:linear-gradient(90deg,#ec4899,#f97316)" data-i="all"><span class="ic">🏆</span><b>ท้าทายทุกหมวด</b><small>30 ข้อ (เต็ม 66)</small></button></div><div class="review-actions"><button class="btn alt" id="menu-review">📖 ดูสูตรก่อนเล่น</button><button class="btn ghost" id="bk">← กลับ</button></div></div>`;document.querySelectorAll('.cat').forEach(b=>b.onclick=()=>start(b.dataset.i));$('menu-review').onclick=reviewMenu;$('bk').onclick=nameScreen}
 function start(i){let src=i==='all'?CATS.flatMap(c=>c.q.map(q=>({q,cat:c}))):CATS[i].q.map(q=>({q,cat:CATS[i]}));
 const qs=shuf(src).map(({q,cat})=>{const o=shuf(q[2].map((t,k)=>({t,ok:k===0})));return{type:q[0],text:q[1],o,exp:q[3],bonus:!!q[4],cat}});
-S={mode:i,qs,idx:0,score:0,right:0,locked:false};show()}
+S={mode:i,qs,idx:0,score:0,right:0,locked:false,startedAt:Date.now()};show()}
 function show(){clearInterval(S.tm);const q=S.qs[S.idx],n=S.qs.length;S.locked=false;S.left=TIME;
 app.innerHTML=`<div class="card"><div class="top"><span class="pill">${avatarSmall()}👤 ${safeText(playerName)}</span><span class="pill">ข้อ ${S.idx+1}/${n}</span><span class="pill">⭐ ${S.score} คะแนน</span><span class="pill" id="tl">⏱️ ${TIME}</span></div>
 <div class="bar"><i style="width:${S.idx/n*100}%"></i></div><div class="bar t"><i id="tb" style="width:100%"></i></div>
@@ -216,7 +216,33 @@ const pts=q.bonus?3:2;if(good){S.score+=pts;S.right++}
 const last=S.idx===S.qs.length-1;
 $('fb').innerHTML=`<div class="fb ${good?'ok':'no'}"><b>${good?'🎉 ถูกต้อง! +'+pts+' คะแนน':(k<0?'⏰ หมดเวลา! 0 คะแนน':'❌ ยังไม่ถูก 0 คะแนน')}</b><div style="margin-top:6px">💡 ${q.exp}</div></div><p class="c"><button class="btn" id="nx">${last?'ดูผลคะแนน 🏁':'ข้อต่อไป →'}</button></p>`;
 $('nx').onclick=()=>{if(last)result();else{S.idx++;show()}};$('nx').focus()}
-function result(){const mx=S.qs.reduce((s,q)=>s+(q.bonus?3:2),0),p=S.score/mx*100;
+
+const SCORE_API = "https://script.google.com/macros/s/AKfycbwCib_DOOQ1E5mVOK5A9TrLBkCMEKb4I61dBbXp2XRFxibn7aAf2Vof8KML3v1UiHQ/exec";
+
+function saveScore(data) {
+  fetch(SCORE_API, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify(data)
+  }).catch(error => {
+    console.error("ส่งคะแนนไม่สำเร็จ", error);
+  });
+}
+
+function result(){
+const mx=S.qs.reduce((s,q)=>s+(q.bonus?3:2),0),p=S.score/mx*100;
+
+saveScore({
+  name: playerName,
+  score: S.score,
+  total: S.qs.length,
+  correct: S.right,
+  time: Math.round((Date.now()-S.startedAt)/1000)
+});
+;
 const msg=p>=90?['🏆','สุดยอด! คุณคือเซียนสูตรคณิตศาสตร์'] :p>=70?['🌟','เก่งมาก! จำสูตรได้แม่นเกือบทั้งหมด']:p>=50?['👍','ดีเลย! ทบทวนอีกนิดจะยิ่งแม่น']:['💪','สู้ ๆ นะ! ลองอ่านสูตรแล้วเล่นอีกครั้ง'];
 app.innerHTML=`<div class="card hero"><div class="big">${msg[0]}</div><h2>จบเกมแล้ว!</h2><p class="player-name">${avatarSmall()}ผู้เล่น: ${safeText(playerName)}</p><p class="score">${S.score}<small style="font-size:24px;color:var(--mut)"> / ${mx}</small></p><div class="stats"><div><b>${S.right}/${S.qs.length}</b>ตอบถูก</div><div><b>${Math.round(p)}%</b>คะแนนที่ได้</div><div><b>${S.qs.length-S.right}</b>ตอบผิด</div></div><p style="font-size:18px">${msg[1]}</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn alt" id="rp">🔄 เล่นอีกครั้ง</button><button class="btn" id="hm">🏠 กลับหน้าหลัก</button></div></div>`;
 $('rp').onclick=()=>start(S.mode);$('hm').onclick=home}
