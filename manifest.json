@@ -3,7 +3,7 @@
   "name": "MATH QUIZ GALAXY",
   "short_name": "MATH GALAXY",
   "description": "Math Quiz Game",
-  "start_url": "./",
+  "start_url": "./math_quiz_game_galaxy.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
