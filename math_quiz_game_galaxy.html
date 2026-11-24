@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MATH QUIZ : พิชิตสูตรคณิตศาสตร์</title>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#17133b;--bg2:#090d24;--card:rgba(21,25,61,.88);--tx:#f5f3ff;--mut:#c4c2e8;--pu:#a78bfa;--bl:#60a5fa;--pk:#f0abfc;--gr:#4ade80;--or:#fb923c;--ln:rgba(196,181,253,.28);--ok:rgba(20,83,45,.78);--no:rgba(127,29,29,.78);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{font-family:'Prompt','Noto Sans Thai',Tahoma,sans-serif;color:var(--tx);background:radial-gradient(ellipse at 18% 18%,rgba(124,58,237,.42),transparent 34%),radial-gradient(ellipse at 82% 28%,rgba(14,165,233,.24),transparent 32%),radial-gradient(ellipse at 70% 85%,rgba(217,70,239,.22),transparent 35%),linear-gradient(145deg,#080b20 0%,#151039 48%,#080d25 100%);background-attachment:fixed;line-height:1.5;position:relative;overflow-x:hidden}
+body:before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:radial-gradient(2px 2px at 20px 30px,#fff,transparent),radial-gradient(1.5px 1.5px at 90px 110px,rgba(255,255,255,.9),transparent),radial-gradient(1px 1px at 160px 70px,rgba(196,181,253,.9),transparent),radial-gradient(2px 2px at 230px 180px,rgba(255,255,255,.8),transparent),radial-gradient(1px 1px at 310px 40px,rgba(147,197,253,.9),transparent);background-size:360px 240px;opacity:.8}#app{max-width:760px;margin:0 auto;padding:16px}
+.card{background:rgba(18,22,55,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(196,181,253,.25);border-radius:24px;padding:22px;box-shadow:0 14px 42px rgba(0,0,0,.35),0 0 28px rgba(124,58,237,.16);animation:in .4s}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hero{text-align:center;padding:30px 20px}
+.hero .big{font-size:64px;animation:bob 2s infinite}
+@keyframes bob{50%{transform:translateY(-8px) rotate(6deg)}}
+h1{margin:6px 0;font-size:clamp(28px,7vw,44px);background:linear-gradient(90deg,var(--pu),var(--pk),var(--or));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{margin:0 0 6px}
+.sub{color:var(--mut);margin:4px 0 18px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:16px;padding:13px 26px;color:#fff;background:linear-gradient(90deg,var(--pu),var(--bl));cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.18);transition:.15s}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.18)}
+.btn.alt{background:linear-gradient(90deg,var(--pk),var(--or))}
+.btn.ghost{background:var(--ln);color:var(--tx);box-shadow:none}
+.rules{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:16px 0;font-size:14px}
+.rules span{background:rgba(139,92,246,.2);border:1px solid rgba(196,181,253,.25);border-radius:99px;padding:4px 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0}
+.cat{font:inherit;color:#fff;border:0;border-radius:20px;padding:18px 14px;text-align:left;cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.18);transition:.15s}
+.cat:hover{transform:translateY(-3px)}.cat b{display:block;font-size:17px}.cat small{opacity:.9}.cat .ic{font-size:30px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:600;font-size:14px;flex-wrap:wrap}
+.pill{background:rgba(139,92,246,.2);border:1px solid rgba(196,181,253,.22);border-radius:99px;padding:4px 12px}
+.bar{height:12px;background:var(--ln);border-radius:9px;overflow:hidden;margin:10px 0}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gr),var(--bl));transition:width .4s}
+.bar.t i{background:linear-gradient(90deg,var(--or),var(--pk));transition:width 1s linear}
+.tag{display:inline-block;color:#fff;border-radius:99px;padding:2px 12px;font-size:13px;font-weight:600;margin-right:6px}
+.bonus{background:var(--or)}
+.q{font-size:clamp(19px,4.6vw,24px);font-weight:600;margin:14px 0}
+.opts{display:grid;gap:10px}
+.opt{font:inherit;font-size:clamp(17px,4.2vw,20px);text-align:left;background:var(--card);color:var(--tx);border:2px solid var(--ln);border-radius:16px;padding:12px 14px;cursor:pointer;display:flex;gap:10px;align-items:center;transition:.15s}
+.opt:hover:not(:disabled){border-color:var(--pu);transform:translateX(4px)}
+.opt .l{flex:none;width:30px;height:30px;border-radius:50%;background:var(--bg1);display:grid;place-items:center;font-weight:700;font-size:14px}
+.opt.ok{background:var(--ok);border-color:var(--gr);animation:pop .4s}
+.opt.no{background:var(--no);border-color:#ef4444;animation:shake .4s}
+@keyframes pop{50%{transform:scale(1.04)}}
+@keyframes shake{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.fb{margin-top:14px;padding:14px;border-radius:16px;background:var(--bg1);animation:in .3s}
+.fb.ok{background:var(--ok)}.fb.no{background:var(--no)}
+.score{font-size:64px;font-weight:700;color:var(--pu);margin:0}
+.stats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:14px 0}
+.stats div{background:var(--bg1);border-radius:16px;padding:10px 18px;min-width:110px}
+.stats b{display:block;font-size:24px}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.9em;line-height:1.2;margin:0 2px}
+.fr i{font-style:normal;border-bottom:1.5px solid currentColor;padding:0 3px}.fr b{font-weight:400;padding:0 3px}
+.m{font-family:'Cambria Math','STIX Two Math','Times New Roman',serif;font-style:italic;white-space:nowrap}
+.m sub,.m sup{font-size:.7em}
+.c{text-align:center}
+
+.review-intro{margin:4px 0 16px;color:var(--mut)}
+.player-field{max-width:420px;margin:18px auto 14px;text-align:left}.player-field label{display:block;font-weight:600;margin-bottom:7px}.player-field input{width:100%;font:inherit;font-size:17px;padding:13px 15px;border-radius:14px;border:1.5px solid rgba(196,181,253,.45);background:rgba(8,12,35,.72);color:#fff;outline:none}.player-field input:focus{border-color:#c4b5fd;box-shadow:0 0 0 3px rgba(167,139,250,.2)}.player-name{color:#ddd6fe;font-weight:600}.avatar{width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid #a78bfa;box-shadow:0 0 18px rgba(96,165,250,.5);display:block;margin:10px auto}.avatar-small{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid #a78bfa;vertical-align:middle;margin-right:6px}.avatar-placeholder{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;margin:10px auto;background:rgba(167,139,250,.16);border:2px dashed rgba(196,181,253,.6);font-size:34px}
+.review-tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:9px;margin:14px 0}
+.review-tab{font:inherit;text-align:left;border:0;border-radius:15px;padding:12px;color:#fff;font-weight:700;cursor:pointer}
+.review-tab small{display:block;font-weight:400;opacity:.9}
+.formula-list{display:grid;gap:10px;margin:14px 0}
+.formula-item{background:rgba(139,92,246,.13);border:1px solid var(--ln);border-radius:16px;padding:13px 15px}
+.formula-head{display:flex;gap:10px;align-items:flex-start}
+.formula-name{font-weight:700}
+.formula-math{font-family:'Cambria Math','STIX Two Math','Times New Roman',serif;font-size:clamp(18px,4.5vw,23px);text-align:center;margin:9px 0;overflow-x:auto}
+.formula-note{font-size:14px;color:var(--mut);margin-top:5px}
+.formula-note b{color:var(--tx)}
+.review-actions{display:flex;gap:9px;justify-content:space-between;flex-wrap:wrap;margin-top:16px}
+.truth-table{width:100%;border-collapse:collapse;text-align:center;font-family:'Cambria Math',serif;background:var(--card);margin-top:8px}
+.truth-table th,.truth-table td{border:1px solid var(--ln);padding:5px}
+
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const F=(n,d)=>`<span class="fr"><i>${n}</i><b>${d}</b></span>`;
+const M=s=>`<span class="m">${s}</span>`;
+const a=(s)=>`a<sub>${s}</sub>`;
+// each item: [type, question, [correct, wrong, wrong, wrong], explanation, isBonus]
+const CATS=[
+{n:'ลำดับและอนุกรม',i:'📈',c:'#7c3aed',q:[
+['จำสูตรให้ได้','พจน์ทั่วไปของลำดับเลขคณิต คือข้อใด',[M(a('n')+' = '+a('1')+' + (n − 1)d'),M(a('n')+' = '+a('1')+' + nd'),M(a('n')+' = '+a('1')+'r<sup>n−1</sup>'),M(a('n')+' = '+a('1')+' + (n + 1)d')],'ลำดับเลขคณิตเพิ่มทีละผลต่างร่วม d รวม (n − 1) ครั้งจากพจน์แรก'],
+['เติมสูตรให้สมบูรณ์','ผลบวก n พจน์ของลำดับเลขคณิต '+M('S<sub>n</sub> = '+F('n','2')+'('+a('1')+' + ___ )')+' ช่องว่างคือข้อใด',[M(a('n')),M('d'),M('r'),M('n')],'S<sub>n</sub> = (n/2)(a₁ + aₙ) คือจำนวนพจน์หารสอง คูณผลบวกของพจน์แรกกับพจน์สุดท้าย'],
+['สูตรนี้เรียกว่าอะไร',M(a('n')+' = '+a('1')+'r<sup>n−1</sup>')+' คือสูตรอะไร',['พจน์ทั่วไปของลำดับเรขาคณิต','พจน์ทั่วไปของลำดับเลขคณิต','ผลบวกอนุกรมอนันต์','ดอกเบี้ยทบต้น'],'มีอัตราส่วนร่วม r ยกกำลัง (n − 1) จึงเป็นลำดับเรขาคณิต'],
+['จริงหรือเท็จ','ข้อใดกล่าวถูกต้องเกี่ยวกับ '+M('S<sub>∞</sub> = '+F(a('1'),'1 − r')),['ใช้ได้เมื่อ |r| &lt; 1','ใช้ได้เมื่อ r = 1','ใช้ได้กับทุกค่าของ r','ใช้ได้เมื่อ |r| &gt; 1'],'ผลบวกอนันต์ของอนุกรมเรขาคณิตลู่เข้าก็ต่อเมื่อ |r| &lt; 1'],
+['คำถามท้าทายความจำ (โบนัส)','อนุกรมเรขาคณิต '+M(a('1')+' = 3, r = 2')+' จงหา '+M('S<sub>4</sub>'),['45','48','42','24'],'S₄ = 3(2⁴ − 1)/(2 − 1) = 3 × 15 = 45 (หรือ 3+6+12+24 = 45)',1]]},
+{n:'ดอกเบี้ยคงต้น',i:'💰',c:'#2563eb',q:[
+['จำสูตรให้ได้','สูตรดอกเบี้ยคงต้น คือข้อใด',[M('I = Prt'),M('I = P(1 + rt)'),M('I = '+F('P','rt')),M('I = P + rt')],'ดอกเบี้ยคงต้นคิดจากเงินต้นเดิมทุกปี จึงเท่ากับ เงินต้น × อัตรา × เวลา'],
+['เติมสูตรให้สมบูรณ์',M('A = P + ___')+' เป็นจำนวนเงินรวมหลังได้ดอกเบี้ยคงต้น ช่องว่างคืออะไร',[M('I'),M('r'),M('t'),M('P')],'เงินรวม = เงินต้น + ดอกเบี้ย ดังนั้นเติม I'],
+['สูตรนี้เรียกว่าอะไร',M('A = P(1 + rt)')+' คือสูตรอะไร',['จำนวนเงินรวมหลังได้ดอกเบี้ยคงต้น','ดอกเบี้ยทบต้น','ดอกเบี้ยคงต้น','มูลค่าเงินแบบทบต้นต่อเนื่อง'],'แทน I = Prt ใน A = P + I จะได้ A = P + Prt = P(1 + rt)'],
+['จับคู่สูตรกับเนื้อหา','ในสูตร '+M('I = Prt')+' ตัวแปร t หมายถึงอะไร',['เวลา (ปี)','เงินต้น','อัตราดอกเบี้ยต่อปี','ดอกเบี้ยที่ได้'],'P = เงินต้น, r = อัตราดอกเบี้ยต่อปี, t = เวลาเป็นปี'],
+['คำถามท้าทายความจำ (โบนัส)','ฝากเงิน 10,000 บาท ดอกเบี้ยคงต้น 5% ต่อปี นาน 3 ปี ได้ดอกเบี้ยกี่บาท',['1,500','1,575','150','15,000'],'I = 10,000 × 0.05 × 3 = 1,500 บาท',1]]},
+{n:'ดอกเบี้ยทบต้น',i:'🌱',c:'#16a34a',q:[
+['จำสูตรให้ได้','สูตรดอกเบี้ยทบต้น (r เป็นร้อยละ) คือข้อใด',[M('A = P(1 + '+F('r','100')+')<sup>t</sup>'),M('A = P(1 + r)t'),M('A = P(1 + '+F('rt','100')+')'),M('A = P + Prt')],'ทบต้นทุกปี จึงคูณด้วย (1 + r/100) ซ้ำ t ครั้ง'],
+['เติมสูตรให้สมบูรณ์',M('A = P(1 + '+F('r','100')+')<sup>___</sup>')+' เลขชี้กำลังคืออะไร',[M('t'),M('r'),M('P'),M('100')],'เลขชี้กำลังคือจำนวนปีที่ทบต้น คือ t'],
+['สูตรนี้เรียกว่าอะไร',M('A = Pe<sup>rt</sup>')+' คือสูตรอะไร',['มูลค่าเงินในอนาคตแบบทบต้นต่อเนื่อง','ดอกเบี้ยคงต้น','ผลบวกอนุกรมเรขาคณิต','พจน์ทั่วไปของลำดับเลขคณิต'],'ใช้เมื่อทบต้นต่อเนื่อง ตัวเลข e ≈ 2.718 และ r เป็นทศนิยม'],
+['จริงหรือเท็จ','ข้อใดอธิบายดอกเบี้ยทบต้นได้ถูกต้อง',['นำดอกเบี้ยไปรวมกับเงินต้นเพื่อคิดดอกเบี้ยงวดถัดไป','คิดดอกเบี้ยจากเงินต้นเดิมเท่านั้น','ดอกเบี้ยเท่ากันทุกปีเสมอ','ไม่ขึ้นกับระยะเวลา'],'จุดต่างจากดอกเบี้ยคงต้นคือ ดอกเบี้ยจะถูกนำไปคิดดอกเบี้ยต่อ'],
+['คำถามท้าทายความจำ (โบนัส)','เงินต้น 1,000 บาท ดอกเบี้ยทบต้น 10% ต่อปี 2 ปี ได้เงินรวมเท่าใด',['1,210','1,200','1,100','1,221'],'A = 1,000(1.1)² = 1,000 × 1.21 = 1,210 บาท',1]]},
+{n:'สมบัติเลขยกกำลัง',i:'🚀',c:'#ec4899',q:[
+['จำสูตรให้ได้',M('a<sup>m</sup> · a<sup>n</sup>')+' เท่ากับข้อใด',[M('a<sup>m+n</sup>'),M('a<sup>mn</sup>'),M('a<sup>m−n</sup>'),M('(2a)<sup>m+n</sup>')],'คูณกันที่ฐานเดียวกัน ให้นำเลขชี้กำลังมาบวกกัน'],
+['เติมสูตรให้สมบูรณ์',M('(a<sup>m</sup>)<sup>n</sup> = a<sup>___</sup>')+' ช่องว่างคือข้อใด',[M('mn'),M('m + n'),M('m − n'),M('m ÷ n')],'ยกกำลังซ้อนกำลัง ให้นำเลขชี้กำลังมาคูณกัน'],
+['สูตรนี้เรียกว่าอะไร',M('a<sup>m</sup> ÷ a<sup>n</sup> = a<sup>m−n</sup>')+' (a ≠ 0) คือสมบัติอะไร',['การหารเลขยกกำลังที่มีฐานเท่ากัน','การคูณเลขยกกำลังที่มีฐานเท่ากัน','การยกกำลังของเลขยกกำลัง','การยกกำลังของผลคูณ'],'หารฐานเดียวกัน ให้นำเลขชี้กำลังมาลบกัน'],
+['จริงหรือเท็จ','ข้อใดถูกต้อง',[M('a<sup>0</sup> = 1 เมื่อ a ≠ 0'),M('a<sup>0</sup> = 0'),M('a<sup>−n</sup> = −a<sup>n</sup>'),M('(ab)<sup>n</sup> = a<sup>n</sup> + b<sup>n</sup>')],'ที่ถูกคือ a⁰ = 1, a⁻ⁿ = 1/aⁿ และ (ab)ⁿ = aⁿbⁿ'],
+['คำถามท้าทายความจำ (โบนัส)','จงหาค่าของ '+M(F('2<sup>3</sup> · 2<sup>4</sup>','2<sup>5</sup>')),['4','8','2','16'],'2^(3+4) ÷ 2⁵ = 2⁷ ÷ 2⁵ = 2² = 4',1]]},
+{n:'เซต',i:'🔵',c:'#f97316',q:[
+['จำสูตรให้ได้','เซต A ที่มีสมาชิก n ตัว จะมีสับเซตทั้งหมดกี่ตัว',[M('2<sup>n</sup>'),M('n<sup>2</sup>'),M('2n'),M('n!')],'แต่ละสมาชิกเลือกได้ 2 แบบ คือ อยู่หรือไม่อยู่ รวมเป็น 2ⁿ'],
+['เติมสูตรให้สมบูรณ์',M('(A ∪ B)<sup>c</sup> = A<sup>c</sup> ∩ ___')+' ช่องว่างคือข้อใด',[M('B<sup>c</sup>'),M('B'),M('A ∪ B'),M('∅')],'กฎของเดอมอร์แกน คอมพลีเมนต์ของยูเนียนเท่ากับอินเตอร์เซกชันของคอมพลีเมนต์'],
+['สูตรนี้เรียกว่าอะไร',M('(A ∩ B)<sup>c</sup> = A<sup>c</sup> ∪ B<sup>c</sup>')+' คือกฎอะไร',['กฎของเดอมอร์แกน','กฎการสลับที่','กฎการแจกแจง','กฎการปฏิเสธซ้อน'],'เป็นกฎของเดอมอร์แกนอีกข้อหนึ่ง'],
+['จริงหรือเท็จ','ข้อใดถูกต้อง',[M('A ∪ B = B ∪ A'),M('A ∪ B = A ∩ B เสมอ'),M('∅ ไม่เป็นสับเซตของ A'),M('A ⊆ B หมายถึง A = B เสมอ')],'ยูเนียนมีสมบัติสลับที่ และ ∅ เป็นสับเซตของทุกเซต'],
+['คำถามท้าทายความจำ (โบนัส)','เซต A = {1, 2, 3, 4} มีสับเซตทั้งหมดกี่ตัว',['16','8','4','24'],'n = 4 จึงมี 2⁴ = 16 สับเซต',1]]},
+{n:'ตรรกศาสตร์',i:'⚖️',c:'#8b5cf6',q:[
+['จำสูตรให้ได้','สัญลักษณ์ของประพจน์เชื่อมด้วย “ถ้า...แล้ว...” คือข้อใด',[M('p → q'),M('p ∧ q'),M('p ∨ q'),M('p ↔ q')],'→ แทนเงื่อนไข “ถ้า p แล้ว q”'],
+['เติมสูตรให้สมบูรณ์',M('¬(p ∨ q) = ¬p ___ ¬q')+' ช่องว่างคือสัญลักษณ์ใด',[M('∧'),M('∨'),M('→'),M('↔')],'กฎ De Morgan เมื่อปฏิเสธจะสลับ ∨ เป็น ∧'],
+['สูตรนี้เรียกว่าอะไร',M('p ∧ (q ∨ r) = (p ∧ q) ∨ (p ∧ r)')+' คือกฎอะไร',['กฎการแจกแจง','กฎ De Morgan','กฎการปฏิเสธซ้อน','กฎการสลับที่'],'∧ แจกเข้าไปใน ∨ เรียกกฎการแจกแจง'],
+['จริงหรือเท็จ',M('p ∧ q')+' เป็นจริงเมื่อใด',['p และ q เป็นจริงทั้งคู่','p เป็นจริงเพียงอย่างเดียว','q เป็นเท็จ','p และ q เป็นเท็จทั้งคู่'],'การเชื่อมด้วย “และ” เป็นจริงเมื่อทั้งสองประพจน์เป็นจริง'],
+['คำถามท้าทายความจำ (โบนัส)','ถ้า p เป็นจริง และ q เป็นเท็จ ข้อใดถูกต้อง',[M('p ∨ q เป็นจริง และ p → q เป็นเท็จ'),M('p ∨ q เป็นเท็จ และ p → q เป็นจริง'),M('ทั้งคู่เป็นจริง'),M('ทั้งคู่เป็นเท็จ')],'p ∨ q จริงเพราะ p จริง ส่วน p → q เท็จเมื่อ p จริงและ q เท็จ',1]]}
+];
+const $=id=>document.getElementById(id), app=$('app'), L=['ก','ข','ค','ง'];
+const shuf=x=>{x=x.slice();for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x};
+const TIME=25;
+let S={};
+let playerName='';
+let playerPhoto='';
+const safeText=s=>String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+
+// สูตรทบทวน อ้างอิงตามโปสเตอร์สูตรคณิตศาสตร์ของผู้ใช้ (28 สูตร)
+const REVIEW_CATS=[
+{n:'ลำดับและอนุกรม',i:'📈',c:'#7c3aed',items:[
+['พจน์ทั่วไปของลำดับเลขคณิต',M(a('n')+' = '+a('1')+' + (n − 1)d'),'a₁ คือพจน์แรก, d คือผลต่างร่วม, n คือลำดับของพจน์'],
+['ผลบวก n พจน์ของลำดับเลขคณิต',M('S<sub>n</sub> = '+F('n','2')+'(a<sub>1</sub> + a<sub>n</sub>) = '+F('n','2')+'(2a<sub>1</sub> + (n − 1)d)'),'ใช้หาผลบวกตั้งแต่พจน์ที่ 1 ถึงพจน์ที่ n'],
+['พจน์ทั่วไปของลำดับเรขาคณิต',M(a('n')+' = '+a('1')+'r<sup>n−1</sup>'),'r คืออัตราส่วนร่วม'],
+['ผลบวก n พจน์ของลำดับเรขาคณิต (r ≠ 1)',M('S<sub>n</sub> = '+F('a<sub>1</sub>(r<sup>n</sup> − 1)','r − 1')),'ใช้เมื่อ r ≠ 1'],
+['ผลบวกอนุกรมอนันต์ (|r| < 1)',M('S<sub>∞</sub> = '+F('a<sub>1</sub>','1 − r')),'ใช้ได้เมื่อค่าสัมบูรณ์ของ r น้อยกว่า 1'],
+['ผลบวกอนุกรมเลขคณิต',M('S<sub>n</sub> = '+F('n','2')+'(a<sub>1</sub> + a<sub>n</sub>)'),'เป็นรูปเดียวกับสูตรผลบวก n พจน์ของลำดับเลขคณิตในข้อ 2 ตามโปสเตอร์']
+]},
+{n:'ดอกเบี้ยคงต้น',i:'💰',c:'#2563eb',items:[
+['ดอกเบี้ยคงต้น',M('I = Prt'),'P = เงินต้น, r = อัตราดอกเบี้ยต่อปี, t = เวลา (ปี)'],
+['จำนวนเงินหลังได้รับดอกเบี้ยคงต้น',M('A = P + I = P(1 + rt)'),'A คือจำนวนเงินรวมหลังได้รับดอกเบี้ย']
+]},
+{n:'ดอกเบี้ยทบต้น',i:'🌱',c:'#16a34a',items:[
+['ดอกเบี้ยทบต้น',M('A = P(1 + '+F('r','100')+')<sup>t</sup>'),'P = เงินต้น, r = อัตราดอกเบี้ย (ร้อยละ), t = เวลา (ปี)'],
+['มูลค่าเงินในอนาคต (แบบทบต้นต่อเนื่อง)',M('A = Pe<sup>rt</sup>'),'ใช้กับการทบต้นต่อเนื่อง; e เป็นค่าคงตัว และ r ใช้เป็นทศนิยม']
+]},
+{n:'สมบัติเลขยกกำลัง',i:'🚀',c:'#ec4899',items:[
+['การคูณเลขยกกำลังฐานเดียวกัน',M('a<sup>m</sup> · a<sup>n</sup> = a<sup>m+n</sup>'),'นำเลขชี้กำลังมาบวกกัน'],
+['การหารเลขยกกำลังฐานเดียวกัน',M(F('a<sup>m</sup>','a<sup>n</sup>')+' = a<sup>m−n</sup> (a ≠ 0)'),'นำเลขชี้กำลังมาลบกัน'],
+['ยกกำลังซ้อน',M('(a<sup>m</sup>)<sup>n</sup> = a<sup>mn</sup>'),'นำเลขชี้กำลังมาคูณกัน'],
+['ยกกำลังของผลคูณ',M('(ab)<sup>n</sup> = a<sup>n</sup>b<sup>n</sup>'),'กระจายเลขชี้กำลังไปยังทุกตัวในวงเล็บ'],
+['ยกกำลังของผลหาร',M('('+F('a','b')+')<sup>n</sup> = '+F('a<sup>n</sup>','b<sup>n</sup>')+' (b ≠ 0)'),'กระจายเลขชี้กำลังไปยังทั้งเศษและส่วน'],
+['เลขยกกำลังศูนย์และเลขชี้กำลังติดลบ',M('a<sup>0</sup> = 1 (a ≠ 0),  a<sup>−n</sup> = '+F('1','a<sup>n</sup>')+' (a ≠ 0)'),'เลขยกกำลังศูนย์มีค่าเป็น 1 เมื่อ a ไม่เท่ากับ 0']
+]},
+{n:'เซต',i:'🔵',c:'#16a34a',items:[
+['เซตว่าง และเซตสับเซต',M('∅,  A ⊆ B'),'∅ คือเซตว่าง; A ⊆ B หมายถึงสมาชิกทุกตัวของ A อยู่ใน B'],
+['สับเซตทั้งหมดของเซตที่มี n สมาชิก',M('|P(A)| = 2<sup>n</sup>'),'จำนวนสับเซตทั้งหมดเท่ากับ 2 ยกกำลังจำนวนสมาชิก'],
+['กฎของเซต',M('A ∪ B = B ∪ A,  A ∩ B = B ∩ A'),'สมบัติการสลับที่ของยูเนียนและอินเตอร์เซกชัน'],
+['กฎของดีมอร์แกน',M('(A ∪ B)<sup>c</sup> = A<sup>c</sup> ∩ B<sup>c</sup><br>(A ∩ B)<sup>c</sup> = A<sup>c</sup> ∪ B<sup>c</sup>'),'เมื่อหาส่วนเติมเต็ม จะสลับ ∪ เป็น ∩ และ ∩ เป็น ∪']
+]},
+{n:'ตรรกศาสตร์',i:'⚖️',c:'#f97316',items:[
+['ประพจน์เชื่อมด้วย “และ”',M('p ∧ q'),'เป็นจริงเมื่อ p และ q เป็นจริงทั้งคู่'],
+['ประพจน์เชื่อมด้วย “หรือ”',M('p ∨ q'),'เป็นจริงเมื่อมีอย่างน้อยหนึ่งประพจน์เป็นจริง'],
+['ประพจน์เชื่อมด้วย “ถ้า...แล้ว...”',M('p → q'),'ประพจน์เงื่อนไข'],
+['ประพจน์เชื่อมด้วย “ก็ต่อเมื่อ”',M('p ↔ q'),'เป็นจริงเมื่อ p และ q มีค่าความจริงเหมือนกัน'],
+['กฎการปฏิเสธ',M('¬(¬p) = p,  ¬(p ∧ q) = ¬p ∨ ¬q'),'ปฏิเสธซ้อนแล้วกลับเป็นประพจน์เดิม; ปฏิเสธ “และ” จะเปลี่ยนเป็น “หรือ”'],
+['กฎการแจกแจง',M('p ∧ (q ∨ r) = (p ∧ q) ∨ (p ∧ r)'),'แจกแจง ∧ เข้าไปในวงเล็บ'],
+['กฎ De Morgan',M('¬(p ∨ q) = ¬p ∧ ¬q'),'ปฏิเสธ “หรือ” จะเปลี่ยนเป็น “และ” พร้อมปฏิเสธแต่ละประพจน์'],
+['ตารางค่าความจริง (ตัวอย่าง)',`<table class="truth-table"><thead><tr><th>p</th><th>q</th><th>p ∧ q</th><th>p ∨ q</th></tr></thead><tbody><tr><td>T</td><td>T</td><td>T</td><td>T</td></tr><tr><td>T</td><td>F</td><td>F</td><td>T</td></tr><tr><td>F</td><td>T</td><td>F</td><td>T</td></tr><tr><td>F</td><td>F</td><td>F</td><td>F</td></tr></tbody></table>`,'T = จริง, F = เท็จ']
+]}
+];
+function reviewMenu(){
+clearInterval(S.tm);
+app.innerHTML=`<div class="card"><h2>📖 ดูสูตรก่อนเล่น</h2><p class="review-intro">เลือกหมวดที่ต้องการทบทวน สูตรทั้งหมดอ้างอิงจากโปสเตอร์ 28 สูตร</p><div class="review-tabs">${REVIEW_CATS.map((c,i)=>`<button class="review-tab" style="background:${c.c}" data-review="${i}">${c.i} ${c.n}<small>${c.items.length} รายการ</small></button>`).join('')}</div><div class="review-actions"><button class="btn ghost" id="review-home">← กลับหน้าหลัก</button><button class="btn" id="review-play">▶ ไปเล่นเกม</button></div></div>`;
+document.querySelectorAll('[data-review]').forEach(b=>b.onclick=()=>showReview(+b.dataset.review));
+$('review-home').onclick=menu;$('review-play').onclick=menu;
+}
+function showReview(i){
+const c=REVIEW_CATS[i];
+app.innerHTML=`<div class="card"><h2>${c.i} ${c.n}</h2><p class="review-intro">ทบทวนสูตรตามโปสเตอร์ แล้วลองจำความหมายของตัวแปรให้แม่น</p><div class="formula-list">${c.items.map((it,k)=>`<div class="formula-item"><div class="formula-head"><div class="formula-name">${it[0]}</div></div><div class="formula-math">${it[1]}</div><div class="formula-note">${it[2]}</div></div>`).join('')}</div><div class="review-actions"><button class="btn ghost" id="review-back">← หมวดสูตร</button><button class="btn" id="review-next">▶ ไปเล่นเกม</button></div></div>`;
+$('review-back').onclick=reviewMenu;$('review-next').onclick=menu;
+}
+function home(){clearInterval(S.tm);app.innerHTML=
+`<div class="card hero"><div class="big">🌌</div><h1>MATH QUIZ</h1><h2>พิชิตสูตรคณิตศาสตร์</h2><p class="sub">จำให้แม่น ใช้ให้ถูก สอบได้แน่นอน!</p><div class="rules"><span>✅ ถูก +2</span><span>⭐ โบนัส +3</span><span>⏱️ ${TIME} วินาที/ข้อ</span><span>📚 30 ข้อ</span></div><button class="btn" id="start-entry">▶ เริ่มต้น</button></div>`;$('start-entry').onclick=nameScreen}
+function nameScreen(){clearInterval(S.tm);app.innerHTML=`<div class="card hero"><div class="big">👤</div><h2>ชื่อผู้เล่น</h2><p class="sub">กรอกชื่อและเลือกรูปโปรไฟล์ก่อนเข้าสู่เกม</p><div id="avatar-preview">${playerPhoto?`<img class="avatar" src="${playerPhoto}" alt="รูปโปรไฟล์">`:`<div class="avatar-placeholder">📷</div>`}</div><div class="player-field"><label for="playerPhotoInput">🖼️ รูปโปรไฟล์ (ไม่บังคับ)</label><input id="playerPhotoInput" type="file" accept="image/*" style="padding:10px"><button class="btn ghost" id="photo-remove" type="button" style="margin-top:8px">ลบรูป</button><label for="playerName" style="margin-top:16px">ชื่อผู้เล่น</label><input id="playerName" type="text" maxlength="24" autocomplete="name" placeholder="กรอกชื่อของคุณ" value="${safeText(playerName)}"></div><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn ghost" id="name-back">← กลับ</button><button class="btn" id="name-confirm">ยืนยันชื่อ ✓</button></div></div>`;$('name-back').onclick=home;$('name-confirm').onclick=confirmName;$('playerName').addEventListener('keydown',e=>{if(e.key==='Enter')confirmName()});$('playerPhotoInput').onchange=e=>{const f=e.target.files?.[0];if(!f)return;if(!f.type.startsWith('image/')){alert('กรุณาเลือกไฟล์รูปภาพ');e.target.value='';return}if(f.size>3*1024*1024){alert('รูปภาพมีขนาดเกิน 3 MB กรุณาเลือกรูปที่เล็กกว่านี้');e.target.value='';return}const r=new FileReader();r.onload=()=>{playerPhoto=String(r.result);$('avatar-preview').innerHTML=`<img class="avatar" src="${playerPhoto}" alt="รูปโปรไฟล์">`};r.readAsDataURL(f)};$('photo-remove').onclick=()=>{playerPhoto='';$('avatar-preview').innerHTML=`<div class="avatar-placeholder">📷</div>`;$('playerPhotoInput').value=''}}
+function confirmName(){const value=$('playerName')?.value.trim();if(!value){alert('กรุณากรอกชื่อผู้เล่นก่อนครับ');$('playerName')?.focus();return}playerName=value;menu()}
+function avatarSmall(){return playerPhoto?`<img class="avatar-small" src="${playerPhoto}" alt="รูปผู้เล่น">`:''}
+function menu(){clearInterval(S.tm);app.innerHTML=`<div class="card"><h2>เลือกหมวดที่ต้องการเล่น</h2><p class="player-name">${avatarSmall()}👤 ผู้เล่น: ${safeText(playerName)}</p><p class="sub">แต่ละหมวดมี 5 ข้อ (คะแนนเต็ม 11)</p><div class="grid">${CATS.map((c,i)=>`<button class="cat" style="background:${c.c}" data-i="${i}"><span class="ic">${c.i}</span><b>${c.n}</b><small>5 ข้อ</small></button>`).join('')}<button class="cat" style="background:linear-gradient(90deg,#ec4899,#f97316)" data-i="all"><span class="ic">🏆</span><b>ท้าทายทุกหมวด</b><small>30 ข้อ (เต็ม 66)</small></button></div><div class="review-actions"><button class="btn alt" id="menu-review">📖 ดูสูตรก่อนเล่น</button><button class="btn ghost" id="bk">← กลับ</button></div></div>`;document.querySelectorAll('.cat').forEach(b=>b.onclick=()=>start(b.dataset.i));$('menu-review').onclick=reviewMenu;$('bk').onclick=nameScreen}
+function start(i){let src=i==='all'?CATS.flatMap(c=>c.q.map(q=>({q,cat:c}))):CATS[i].q.map(q=>({q,cat:CATS[i]}));
+const qs=shuf(src).map(({q,cat})=>{const o=shuf(q[2].map((t,k)=>({t,ok:k===0})));return{type:q[0],text:q[1],o,exp:q[3],bonus:!!q[4],cat}});
+S={mode:i,qs,idx:0,score:0,right:0,locked:false};show()}
+function show(){clearInterval(S.tm);const q=S.qs[S.idx],n=S.qs.length;S.locked=false;S.left=TIME;
+app.innerHTML=`<div class="card"><div class="top"><span class="pill">${avatarSmall()}👤 ${safeText(playerName)}</span><span class="pill">ข้อ ${S.idx+1}/${n}</span><span class="pill">⭐ ${S.score} คะแนน</span><span class="pill" id="tl">⏱️ ${TIME}</span></div>
+<div class="bar"><i style="width:${S.idx/n*100}%"></i></div><div class="bar t"><i id="tb" style="width:100%"></i></div>
+<span class="tag" style="background:${q.cat.c}">${q.cat.i} ${q.cat.n}</span><span class="tag" style="background:var(--bl)">${q.type}</span>${q.bonus?'<span class="tag bonus">⭐ โบนัส +3</span>':''}
+<div class="q">${q.text}</div><div class="opts">${q.o.map((o,k)=>`<button class="opt" data-k="${k}"><span class="l">${L[k]}</span><span>${o.t}</span></button>`).join('')}</div><div id="fb"></div></div>`;
+document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(+b.dataset.k));
+setTimeout(()=>{const t=$('tb');if(t)t.style.width='0%'},50);
+S.tm=setInterval(()=>{S.left--;const e=$('tl');if(e)e.textContent='⏱️ '+S.left;if(S.left<=0)pick(-1)},1000);
+}
+function pick(k){if(S.locked)return;S.locked=true;clearInterval(S.tm);const q=S.qs[S.idx],btns=document.querySelectorAll('.opt'),good=k>=0&&q.o[k].ok;
+btns.forEach((b,i)=>{b.disabled=true;if(q.o[i].ok)b.classList.add('ok');else if(i===k)b.classList.add('no')});
+const pts=q.bonus?3:2;if(good){S.score+=pts;S.right++}
+const last=S.idx===S.qs.length-1;
+$('fb').innerHTML=`<div class="fb ${good?'ok':'no'}"><b>${good?'🎉 ถูกต้อง! +'+pts+' คะแนน':(k<0?'⏰ หมดเวลา! 0 คะแนน':'❌ ยังไม่ถูก 0 คะแนน')}</b><div style="margin-top:6px">💡 ${q.exp}</div></div><p class="c"><button class="btn" id="nx">${last?'ดูผลคะแนน 🏁':'ข้อต่อไป →'}</button></p>`;
+$('nx').onclick=()=>{if(last)result();else{S.idx++;show()}};$('nx').focus()}
+function result(){const mx=S.qs.reduce((s,q)=>s+(q.bonus?3:2),0),p=S.score/mx*100;
+const msg=p>=90?['🏆','สุดยอด! คุณคือเซียนสูตรคณิตศาสตร์'] :p>=70?['🌟','เก่งมาก! จำสูตรได้แม่นเกือบทั้งหมด']:p>=50?['👍','ดีเลย! ทบทวนอีกนิดจะยิ่งแม่น']:['💪','สู้ ๆ นะ! ลองอ่านสูตรแล้วเล่นอีกครั้ง'];
+app.innerHTML=`<div class="card hero"><div class="big">${msg[0]}</div><h2>จบเกมแล้ว!</h2><p class="player-name">${avatarSmall()}ผู้เล่น: ${safeText(playerName)}</p><p class="score">${S.score}<small style="font-size:24px;color:var(--mut)"> / ${mx}</small></p><div class="stats"><div><b>${S.right}/${S.qs.length}</b>ตอบถูก</div><div><b>${Math.round(p)}%</b>คะแนนที่ได้</div><div><b>${S.qs.length-S.right}</b>ตอบผิด</div></div><p style="font-size:18px">${msg[1]}</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn alt" id="rp">🔄 เล่นอีกครั้ง</button><button class="btn" id="hm">🏠 กลับหน้าหลัก</button></div></div>`;
+$('rp').onclick=()=>start(S.mode);$('hm').onclick=home}
+home();
+</script>
+</body>
+</html>
