@@ -222,5 +222,18 @@ app.innerHTML=`<div class="card hero"><div class="big">${msg[0]}</div><h2>จบ
 $('rp').onclick=()=>start(S.mode);$('hm').onclick=home}
 home();
 </script>
+  <script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .then(registration => {
+        console.log("MATH QUIZ GALAXY PWA READY", registration);
+      })
+      .catch(error => {
+        console.error("PWA registration failed:", error);
+      });
+  });
+}
+</script>
 </body>
 </html>
