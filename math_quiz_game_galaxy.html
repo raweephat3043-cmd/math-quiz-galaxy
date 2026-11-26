@@ -58,6 +58,16 @@ h2{margin:0 0 6px}
 .m{font-family:'Cambria Math','STIX Two Math','Times New Roman',serif;font-style:italic;white-space:nowrap}
 .m sub,.m sup{font-size:.7em}
 .c{text-align:center}
+.formula-modal{position:fixed;inset:0;z-index:999;background:rgba(10,8,35,.78);display:flex;align-items:center;justify-content:center;padding:14px}
+.formula-panel{width:min(720px,100%);max-height:88vh;overflow:auto;background:var(--card);color:var(--tx);border:1px solid var(--ln);border-radius:22px;padding:20px;box-shadow:0 18px 55px rgba(0,0,0,.4)}
+.formula-head{display:flex;align-items:center;justify-content:space-between;gap:10px;position:sticky;top:-20px;background:var(--card);padding:4px 0 12px;z-index:1}
+.formula-group{background:var(--bg1);border-radius:16px;padding:14px;margin:12px 0}
+.formula-group h3{margin:0 0 8px;font-size:17px}
+.formula-item{padding:8px 0;border-top:1px solid var(--ln)}
+.formula-item:first-of-type{border-top:0}
+.formula-item b{display:block;margin-bottom:3px}
+.formula-item code{font-family:'Cambria Math',serif;font-size:17px;color:var(--pu);white-space:normal}
+.formula-note{font-size:13px;color:var(--mut);margin:3px 0 0}
 </style>
 </head>
 <body>
@@ -90,57 +100,4 @@ const CATS=[
 ['จำสูตรให้ได้','สูตรดอกเบี้ยทบต้น (r เป็นร้อยละ) คือข้อใด',[M('A = P(1 + '+F('r','100')+')<sup>t</sup>'),M('A = P(1 + r)t'),M('A = P(1 + '+F('rt','100')+')'),M('A = P + Prt')],'ทบต้นทุกปี จึงคูณด้วย (1 + r/100) ซ้ำ t ครั้ง'],
 ['เติมสูตรให้สมบูรณ์',M('A = P(1 + '+F('r','100')+')<sup>___</sup>')+' เลขชี้กำลังคืออะไร',[M('t'),M('r'),M('P'),M('100')],'เลขชี้กำลังคือจำนวนปีที่ทบต้น คือ t'],
 ['สูตรนี้เรียกว่าอะไร',M('A = Pe<sup>rt</sup>')+' คือสูตรอะไร',['มูลค่าเงินในอนาคตแบบทบต้นต่อเนื่อง','ดอกเบี้ยคงต้น','ผลบวกอนุกรมเรขาคณิต','พจน์ทั่วไปของลำดับเลขคณิต'],'ใช้เมื่อทบต้นต่อเนื่อง ตัวเลข e ≈ 2.718 และ r เป็นทศนิยม'],
-['จริงหรือเท็จ','ข้อใดอธิบายดอกเบี้ยทบต้นได้ถูกต้อง',['นำดอกเบี้ยไปรวมกับเงินต้นเพื่อคิดดอกเบี้ยงวดถัดไป','คิดดอกเบี้ยจากเงินต้นเดิมเท่านั้น','ดอกเบี้ยเท่ากันทุกปีเสมอ','ไม่ขึ้นกับระยะเวลา'],'จุดต่างจากดอกเบี้ยคงต้นคือ ดอกเบี้ยจะถูกนำไปคิดดอกเบี้ยต่อ'],
-['คำถามท้าทายความจำ (โบนัส)','เงินต้น 1,000 บาท ดอกเบี้ยทบต้น 10% ต่อปี 2 ปี ได้เงินรวมเท่าใด',['1,210','1,200','1,100','1,221'],'A = 1,000(1.1)² = 1,000 × 1.21 = 1,210 บาท',1]]},
-{n:'สมบัติเลขยกกำลัง',i:'🚀',c:'#ec4899',q:[
-['จำสูตรให้ได้',M('a<sup>m</sup> · a<sup>n</sup>')+' เท่ากับข้อใด',[M('a<sup>m+n</sup>'),M('a<sup>mn</sup>'),M('a<sup>m−n</sup>'),M('(2a)<sup>m+n</sup>')],'คูณกันที่ฐานเดียวกัน ให้นำเลขชี้กำลังมาบวกกัน'],
-['เติมสูตรให้สมบูรณ์',M('(a<sup>m</sup>)<sup>n</sup> = a<sup>___</sup>')+' ช่องว่างคือข้อใด',[M('mn'),M('m + n'),M('m − n'),M('m ÷ n')],'ยกกำลังซ้อนกำลัง ให้นำเลขชี้กำลังมาคูณกัน'],
-['สูตรนี้เรียกว่าอะไร',M('a<sup>m</sup> ÷ a<sup>n</sup> = a<sup>m−n</sup>')+' (a ≠ 0) คือสมบัติอะไร',['การหารเลขยกกำลังที่มีฐานเท่ากัน','การคูณเลขยกกำลังที่มีฐานเท่ากัน','การยกกำลังของเลขยกกำลัง','การยกกำลังของผลคูณ'],'หารฐานเดียวกัน ให้นำเลขชี้กำลังมาลบกัน'],
-['จริงหรือเท็จ','ข้อใดถูกต้อง',[M('a<sup>0</sup> = 1 เมื่อ a ≠ 0'),M('a<sup>0</sup> = 0'),M('a<sup>−n</sup> = −a<sup>n</sup>'),M('(ab)<sup>n</sup> = a<sup>n</sup> + b<sup>n</sup>')],'ที่ถูกคือ a⁰ = 1, a⁻ⁿ = 1/aⁿ และ (ab)ⁿ = aⁿbⁿ'],
-['คำถามท้าทายความจำ (โบนัส)','จงหาค่าของ '+M(F('2<sup>3</sup> · 2<sup>4</sup>','2<sup>5</sup>')),['4','8','2','16'],'2^(3+4) ÷ 2⁵ = 2⁷ ÷ 2⁵ = 2² = 4',1]]},
-{n:'เซต',i:'🔵',c:'#f97316',q:[
-['จำสูตรให้ได้','เซต A ที่มีสมาชิก n ตัว จะมีสับเซตทั้งหมดกี่ตัว',[M('2<sup>n</sup>'),M('n<sup>2</sup>'),M('2n'),M('n!')],'แต่ละสมาชิกเลือกได้ 2 แบบ คือ อยู่หรือไม่อยู่ รวมเป็น 2ⁿ'],
-['เติมสูตรให้สมบูรณ์',M('(A ∪ B)<sup>c</sup> = A<sup>c</sup> ∩ ___')+' ช่องว่างคือข้อใด',[M('B<sup>c</sup>'),M('B'),M('A ∪ B'),M('∅')],'กฎของเดอมอร์แกน คอมพลีเมนต์ของยูเนียนเท่ากับอินเตอร์เซกชันของคอมพลีเมนต์'],
-['สูตรนี้เรียกว่าอะไร',M('(A ∩ B)<sup>c</sup> = A<sup>c</sup> ∪ B<sup>c</sup>')+' คือกฎอะไร',['กฎของเดอมอร์แกน','กฎการสลับที่','กฎการแจกแจง','กฎการปฏิเสธซ้อน'],'เป็นกฎของเดอมอร์แกนอีกข้อหนึ่ง'],
-['จริงหรือเท็จ','ข้อใดถูกต้อง',[M('A ∪ B = B ∪ A'),M('A ∪ B = A ∩ B เสมอ'),M('∅ ไม่เป็นสับเซตของ A'),M('A ⊆ B หมายถึง A = B เสมอ')],'ยูเนียนมีสมบัติสลับที่ และ ∅ เป็นสับเซตของทุกเซต'],
-['คำถามท้าทายความจำ (โบนัส)','เซต A = {1, 2, 3, 4} มีสับเซตทั้งหมดกี่ตัว',['16','8','4','24'],'n = 4 จึงมี 2⁴ = 16 สับเซต',1]]},
-{n:'ตรรกศาสตร์',i:'⚖️',c:'#8b5cf6',q:[
-['จำสูตรให้ได้','สัญลักษณ์ของประพจน์เชื่อมด้วย “ถ้า...แล้ว...” คือข้อใด',[M('p → q'),M('p ∧ q'),M('p ∨ q'),M('p ↔ q')],'→ แทนเงื่อนไข “ถ้า p แล้ว q”'],
-['เติมสูตรให้สมบูรณ์',M('¬(p ∨ q) = ¬p ___ ¬q')+' ช่องว่างคือสัญลักษณ์ใด',[M('∧'),M('∨'),M('→'),M('↔')],'กฎ De Morgan เมื่อปฏิเสธจะสลับ ∨ เป็น ∧'],
-['สูตรนี้เรียกว่าอะไร',M('p ∧ (q ∨ r) = (p ∧ q) ∨ (p ∧ r)')+' คือกฎอะไร',['กฎการแจกแจง','กฎ De Morgan','กฎการปฏิเสธซ้อน','กฎการสลับที่'],'∧ แจกเข้าไปใน ∨ เรียกกฎการแจกแจง'],
-['จริงหรือเท็จ',M('p ∧ q')+' เป็นจริงเมื่อใด',['p และ q เป็นจริงทั้งคู่','p เป็นจริงเพียงอย่างเดียว','q เป็นเท็จ','p และ q เป็นเท็จทั้งคู่'],'การเชื่อมด้วย “และ” เป็นจริงเมื่อทั้งสองประพจน์เป็นจริง'],
-['คำถามท้าทายความจำ (โบนัส)','ถ้า p เป็นจริง และ q เป็นเท็จ ข้อใดถูกต้อง',[M('p ∨ q เป็นจริง และ p → q เป็นเท็จ'),M('p ∨ q เป็นเท็จ และ p → q เป็นจริง'),M('ทั้งคู่เป็นจริง'),M('ทั้งคู่เป็นเท็จ')],'p ∨ q จริงเพราะ p จริง ส่วน p → q เท็จเมื่อ p จริงและ q เท็จ',1]]}
-];
-const $=id=>document.getElementById(id), app=$('app'), L=['ก','ข','ค','ง'];
-const shuf=x=>{x=x.slice();for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x};
-const TIME=25;
-let S={};
-function home(){clearInterval(S.tm);app.innerHTML=`<div class="card hero"><div class="big">🧮</div><h1>MATH QUIZ</h1><h2>พิชิตสูตรคณิตศาสตร์</h2><p class="sub">จำให้แม่น ใช้ให้ถูก สอบได้แน่นอน!</p><div class="rules"><span>✅ ถูก +2</span><span>⭐ โบนัส +3</span><span>⏱️ ${TIME} วินาที/ข้อ</span><span>📚 30 ข้อ</span></div><button class="btn" id="go">▶ เริ่มเล่น</button></div>`;$('go').onclick=menu}
-function menu(){clearInterval(S.tm);app.innerHTML=`<div class="card"><h2>เลือกหมวดที่ต้องการเล่น</h2><p class="sub">แต่ละหมวดมี 5 ข้อ (คะแนนเต็ม 11)</p><div class="grid">${CATS.map((c,i)=>`<button class="cat" style="background:${c.c}" data-i="${i}"><span class="ic">${c.i}</span><b>${c.n}</b><small>5 ข้อ</small></button>`).join('')}<button class="cat" style="background:linear-gradient(90deg,#ec4899,#f97316)" data-i="all"><span class="ic">🏆</span><b>ท้าทายทุกหมวด</b><small>30 ข้อ (เต็ม 66)</small></button></div><button class="btn ghost" id="bk">← กลับ</button></div>`;
-document.querySelectorAll('.cat').forEach(b=>b.onclick=()=>start(b.dataset.i));$('bk').onclick=home}
-function start(i){let src=i==='all'?CATS.flatMap(c=>c.q.map(q=>({q,cat:c}))):CATS[i].q.map(q=>({q,cat:CATS[i]}));
-const qs=shuf(src).map(({q,cat})=>{const o=shuf(q[2].map((t,k)=>({t,ok:k===0})));return{type:q[0],text:q[1],o,exp:q[3],bonus:!!q[4],cat}});
-S={mode:i,qs,idx:0,score:0,right:0,locked:false};show()}
-function show(){clearInterval(S.tm);const q=S.qs[S.idx],n=S.qs.length;S.locked=false;S.left=TIME;
-app.innerHTML=`<div class="card"><div class="top"><span class="pill">ข้อ ${S.idx+1}/${n}</span><span class="pill">⭐ ${S.score} คะแนน</span><span class="pill" id="tl">⏱️ ${TIME}</span></div>
-<div class="bar"><i style="width:${S.idx/n*100}%"></i></div><div class="bar t"><i id="tb" style="width:100%"></i></div>
-<span class="tag" style="background:${q.cat.c}">${q.cat.i} ${q.cat.n}</span><span class="tag" style="background:var(--bl)">${q.type}</span>${q.bonus?'<span class="tag bonus">⭐ โบนัส +3</span>':''}
-<div class="q">${q.text}</div><div class="opts">${q.o.map((o,k)=>`<button class="opt" data-k="${k}"><span class="l">${L[k]}</span><span>${o.t}</span></button>`).join('')}</div><div id="fb"></div></div>`;
-document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(+b.dataset.k));
-setTimeout(()=>{const t=$('tb');if(t)t.style.width='0%'},50);
-S.tm=setInterval(()=>{S.left--;const e=$('tl');if(e)e.textContent='⏱️ '+S.left;if(S.left<=0)pick(-1)},1000);
-}
-function pick(k){if(S.locked)return;S.locked=true;clearInterval(S.tm);const q=S.qs[S.idx],btns=document.querySelectorAll('.opt'),good=k>=0&&q.o[k].ok;
-btns.forEach((b,i)=>{b.disabled=true;if(q.o[i].ok)b.classList.add('ok');else if(i===k)b.classList.add('no')});
-const pts=q.bonus?3:2;if(good){S.score+=pts;S.right++}
-const last=S.idx===S.qs.length-1;
-$('fb').innerHTML=`<div class="fb ${good?'ok':'no'}"><b>${good?'🎉 ถูกต้อง! +'+pts+' คะแนน':(k<0?'⏰ หมดเวลา! 0 คะแนน':'❌ ยังไม่ถูก 0 คะแนน')}</b><div style="margin-top:6px">💡 ${q.exp}</div></div><p class="c"><button class="btn" id="nx">${last?'ดูผลคะแนน 🏁':'ข้อต่อไป →'}</button></p>`;
-$('nx').onclick=()=>{if(last)result();else{S.idx++;show()}};$('nx').focus()}
-function result(){const mx=S.qs.reduce((s,q)=>s+(q.bonus?3:2),0),p=S.score/mx*100;
-const msg=p>=90?['🏆','สุดยอด! คุณคือเซียนสูตรคณิตศาสตร์'] :p>=70?['🌟','เก่งมาก! จำสูตรได้แม่นเกือบทั้งหมด']:p>=50?['👍','ดีเลย! ทบทวนอีกนิดจะยิ่งแม่น']:['💪','สู้ ๆ นะ! ลองอ่านสูตรแล้วเล่นอีกครั้ง'];
-app.innerHTML=`<div class="card hero"><div class="big">${msg[0]}</div><h2>จบเกมแล้ว!</h2><p class="score">${S.score}<small style="font-size:24px;color:var(--mut)"> / ${mx}</small></p><div class="stats"><div><b>${S.right}/${S.qs.length}</b>ตอบถูก</div><div><b>${Math.round(p)}%</b>คะแนนที่ได้</div><div><b>${S.qs.length-S.right}</b>ตอบผิด</div></div><p style="font-size:18px">${msg[1]}</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn alt" id="rp">🔄 เล่นอีกครั้ง</button><button class="btn" id="hm">🏠 กลับหน้าหลัก</button></div></div>`;
-$('rp').onclick=()=>start(S.mode);$('hm').onclick=home}
-home();
-</script>
-</body>
-</html>
+['จริงหรือเท็จ','ข้อใดอธิบายดอกเบี้ยทบต้นได้ถูกต้อง',['นำดอกเบี้ยไปรวมกับเงินต้นเพื่อคิดดอกเบี้ยงวดถัดไป','คิดดอกเบี้ยจากเงินต้นเดิมเท่านั้น','ดอกเบี้ยเท่ากันทุกปีเสมอ','ไม่ขึ้นกับระยะ
