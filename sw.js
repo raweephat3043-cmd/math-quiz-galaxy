@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "math-quiz-galaxy-v5";
+const CACHE_NAME = "math-quiz-galaxy-v6";
 
 const FILES_TO_CACHE = [
   "./",
