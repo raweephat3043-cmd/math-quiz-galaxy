@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "math-quiz-galaxy-v9";
+const CACHE_NAME = "math-quiz-galaxy-v8";
 
 const CORE_FILES = [
   "./index.html",
