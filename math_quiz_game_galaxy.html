@@ -6,8 +6,7 @@
 <title>MATH QUIZ : พิชิตสูตรคณิตศาสตร์</title>
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg1:#ede9fe;--bg2:#fce7f3;--card:#fff;--tx:#1e1b4b;--mut:#6b7280;--pu:#7c3aed;--bl:#2563eb;--pk:#ec4899;--gr:#16a34a;--or:#f97316;--ln:#e5e7eb;--ok:#dcfce7;--no:#fee2e2;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg1:#ede9fe;--bg2:#fce7f3;--card:#fff;--tx:#1e1b4b;--mut:#6b7280;--pu:#7c3aed;--bl:#2563eb;--pk:#ec4899;--gr:#16a34a;--or:#f97316;--ln:#e5e7eb;--ok:#dcfce7;--no:#fee2e2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#1e1b4b;--bg2:#3b0764;--card:#2a2560;--tx:#f5f3ff;--mut:#c4b5fd;--ln:#4c4590;--ok:#14532d;--no:#7f1d1d;color-scheme:dark}}
 :root[data-theme="dark"]{--bg1:#1e1b4b;--bg2:#3b0764;--card:#2a2560;--tx:#f5f3ff;--mut:#c4b5fd;--ln:#4c4590;--ok:#14532d;--no:#7f1d1d;color-scheme:dark}
 *{box-sizing:border-box}
@@ -23,14 +22,18 @@ h1{margin:6px 0;font-size:clamp(28px,7vw,44px);background:linear-gradient(90deg,
 h2{margin:0 0 6px}
 .sub{color:var(--mut);margin:4px 0 18px}
 .btn{font:inherit;font-weight:700;border:0;border-radius:16px;padding:13px 26px;color:#fff;background:linear-gradient(90deg,var(--pu),var(--bl));cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.18);transition:.15s}
-.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.18)}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.18)}
 .btn.alt{background:linear-gradient(90deg,var(--pk),var(--or))}
 .btn.ghost{background:var(--ln);color:var(--tx);box-shadow:none}
 .rules{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:16px 0;font-size:14px}
 .rules span{background:var(--bg1);border-radius:99px;padding:4px 12px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0}
 .cat{font:inherit;color:#fff;border:0;border-radius:20px;padding:18px 14px;text-align:left;cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.18);transition:.15s}
-.cat:hover{transform:translateY(-3px)}.cat b{display:block;font-size:17px}.cat small{opacity:.9}.cat .ic{font-size:30px}
+.cat:hover{transform:translateY(-3px)}
+.cat b{display:block;font-size:17px}
+.cat small{opacity:.9}
+.cat .ic{font-size:30px}
 .top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:600;font-size:14px;flex-wrap:wrap}
 .pill{background:var(--bg1);border-radius:99px;padding:4px 12px}
 .bar{height:12px;background:var(--ln);border-radius:9px;overflow:hidden;margin:10px 0}
@@ -48,13 +51,15 @@ h2{margin:0 0 6px}
 @keyframes pop{50%{transform:scale(1.04)}}
 @keyframes shake{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
 .fb{margin-top:14px;padding:14px;border-radius:16px;background:var(--bg1);animation:in .3s}
-.fb.ok{background:var(--ok)}.fb.no{background:var(--no)}
+.fb.ok{background:var(--ok)}
+.fb.no{background:var(--no)}
 .score{font-size:64px;font-weight:700;color:var(--pu);margin:0}
 .stats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:14px 0}
 .stats div{background:var(--bg1);border-radius:16px;padding:10px 18px;min-width:110px}
 .stats b{display:block;font-size:24px}
 .fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.9em;line-height:1.2;margin:0 2px}
-.fr i{font-style:normal;border-bottom:1.5px solid currentColor;padding:0 3px}.fr b{font-weight:400;padding:0 3px}
+.fr i{font-style:normal;border-bottom:1.5px solid currentColor;padding:0 3px}
+.fr b{font-weight:400;padding:0 3px}
 .m{font-family:'Cambria Math','STIX Two Math','Times New Roman',serif;font-style:italic;white-space:nowrap}
 .m sub,.m sup{font-size:.7em}
 .c{text-align:center}
@@ -68,21 +73,31 @@ h2{margin:0 0 6px}
 .formula-item b{display:block;margin-bottom:3px}
 .formula-item code{font-family:'Cambria Math',serif;font-size:17px;color:var(--pu);white-space:normal}
 .formula-note{font-size:13px;color:var(--mut);margin:3px 0 0}
+.profile-row{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 auto 16px;flex-wrap:wrap}
+.avatar{width:58px;height:58px;border-radius:50%;object-fit:cover;border:3px solid var(--pu);background:var(--bg1)}
+.profile-name{font-weight:700;font-size:16px}
+.profile-box{max-width:420px;margin:18px auto 0;text-align:left;background:var(--bg1);padding:16px;border-radius:18px}
+.profile-box label{display:block;font-weight:600;margin:10px 0 5px}
+.profile-box input[type=text]{width:100%;font:inherit;padding:11px 12px;border:1px solid var(--ln);border-radius:12px;background:var(--card);color:var(--tx)}
+.profile-box input[type=file]{max-width:100%;font:inherit}
+.profile-preview{display:flex;align-items:center;gap:12px;margin-top:10px}
 </style>
 </head>
 <body>
 <div id="app"><div class="card hero"><div class="big">🧮</div><h2>กำลังโหลดเกม...</h2><p class="sub">หากหน้านี้ค้าง ให้เปิดไฟล์ด้วย Safari</p></div></div>
+
 <script>
-window.addEventListener('error', function (event) {
-  var root = document.getElementById('app');
-  if (root) root.innerHTML = '<div class="card hero"><div class="big">⚠️</div><h2>เกิดข้อผิดพลาดในการเปิดเกม</h2><p class="sub">ลองเปิดไฟล์นี้ด้วย Safari โดยตรง และตรวจสอบว่าอนุญาต JavaScript แล้ว</p><p style="font-size:13px;overflow-wrap:anywhere">' + (event.message || 'ไม่สามารถเริ่มเกมได้') + '</p></div>';
+window.addEventListener('error', function(event){
+  var root=document.getElementById('app');
+  if(root) root.innerHTML='<div class="card hero"><div class="big">⚠️</div><h2>เกิดข้อผิดพลาดในการเปิดเกม</h2><p class="sub">ลองเปิดไฟล์นี้ด้วย Safari โดยตรง และตรวจสอบว่าอนุญาต JavaScript แล้ว</p><p style="font-size:13px;overflow-wrap:anywhere">'+(event.message||'ไม่สามารถเริ่มเกมได้')+'</p></div>';
 });
 </script>
+
 <script>
 const F=(n,d)=>`<span class="fr"><i>${n}</i><b>${d}</b></span>`;
 const M=s=>`<span class="m">${s}</span>`;
-const a=(s)=>`a<sub>${s}</sub>`;
-// each item: [type, question, [correct, wrong, wrong, wrong], explanation, isBonus]
+const a=s=>`a<sub>${s}</sub>`;
+
 const CATS=[
 {n:'ลำดับและอนุกรม',i:'📈',c:'#7c3aed',q:[
 ['จำสูตรให้ได้','พจน์ทั่วไปของลำดับเลขคณิต คือข้อใด',[M(a('n')+' = '+a('1')+' + (n − 1)d'),M(a('n')+' = '+a('1')+' + nd'),M(a('n')+' = '+a('1')+'r<sup>n−1</sup>'),M(a('n')+' = '+a('1')+' + (n + 1)d')],'ลำดับเลขคณิตเพิ่มทีละผลต่างร่วม d รวม (n − 1) ครั้งจากพจน์แรก'],
@@ -121,86 +136,211 @@ const CATS=[
 ['จริงหรือเท็จ',M('p ∧ q')+' เป็นจริงเมื่อใด',['p และ q เป็นจริงทั้งคู่','p เป็นจริงเพียงอย่างเดียว','q เป็นเท็จ','p และ q เป็นเท็จทั้งคู่'],'การเชื่อมด้วย “และ” เป็นจริงเมื่อทั้งสองประพจน์เป็นจริง'],
 ['คำถามท้าทายความจำ (โบนัส)','ถ้า p เป็นจริง และ q เป็นเท็จ ข้อใดถูกต้อง',[M('p ∨ q เป็นจริง และ p → q เป็นเท็จ'),M('p ∨ q เป็นเท็จ และ p → q เป็นจริง'),M('ทั้งคู่เป็นจริง'),M('ทั้งคู่เป็นเท็จ')],'p ∨ q จริงเพราะ p จริง ส่วน p → q เท็จเมื่อ p จริงและ q เท็จ',1]]}
 ];
+
 const FORMULAS=[
 {n:'ลำดับและอนุกรม',i:'📈',items:[
 ['พจน์ทั่วไปของลำดับเลขคณิต','aₙ = a₁ + (n − 1)d','d คือผลต่างร่วม'],
 ['ผลบวก n พจน์ของลำดับเลขคณิต','Sₙ = (n/2)(a₁ + aₙ)','หรือ Sₙ = n/2[2a₁ + (n − 1)d]'],
 ['พจน์ทั่วไปของลำดับเรขาคณิต','aₙ = a₁rⁿ⁻¹','r คืออัตราส่วนร่วม'],
 ['ผลบวก n พจน์ของอนุกรมเรขาคณิต','Sₙ = a₁(rⁿ − 1)/(r − 1), r ≠ 1',''],
-['ผลบวกอนุกรมเรขาคณิตอนันต์','S∞ = a₁/(1 − r)','ใช้เมื่อ |r| < 1'] ]},
+['ผลบวกอนุกรมเรขาคณิตอนันต์','S∞ = a₁/(1 − r)','ใช้เมื่อ |r| < 1']]},
 {n:'ดอกเบี้ยคงต้น',i:'💰',items:[
 ['ดอกเบี้ยคงต้น','I = Prt','r เป็นอัตราดอกเบี้ยในรูปทศนิยม และ t เป็นปี'],
-['จำนวนเงินรวม','A = P + I = P(1 + rt)','P คือเงินต้น'] ]},
+['จำนวนเงินรวม','A = P + I = P(1 + rt)','P คือเงินต้น']]},
 {n:'ดอกเบี้ยทบต้น',i:'🌱',items:[
 ['ดอกเบี้ยทบต้น (r เป็นร้อยละ)','A = P(1 + r/100)ᵗ','ทบต้นปีละครั้ง'],
-['ดอกเบี้ยทบต้นต่อเนื่อง','A = Peʳᵗ','r เป็นอัตราดอกเบี้ยในรูปทศนิยม'] ]},
+['ดอกเบี้ยทบต้นต่อเนื่อง','A = Peʳᵗ','r เป็นอัตราดอกเบี้ยในรูปทศนิยม']]},
 {n:'สมบัติเลขยกกำลัง',i:'🚀',items:[
 ['คูณเลขยกกำลังฐานเดียวกัน','aᵐ × aⁿ = aᵐ⁺ⁿ',''],
 ['หารเลขยกกำลังฐานเดียวกัน','aᵐ ÷ aⁿ = aᵐ⁻ⁿ','เมื่อ a ≠ 0'],
 ['ยกกำลังซ้อนกำลัง','(aᵐ)ⁿ = aᵐⁿ',''],
 ['เลขยกกำลังศูนย์','a⁰ = 1','เมื่อ a ≠ 0'],
 ['เลขยกกำลังติดลบ','a⁻ⁿ = 1/aⁿ','เมื่อ a ≠ 0'],
-['ยกกำลังของผลคูณ','(ab)ⁿ = aⁿbⁿ',''] ]},
+['ยกกำลังของผลคูณ','(ab)ⁿ = aⁿbⁿ','']]},
 {n:'เซต',i:'🔵',items:[
 ['จำนวนสับเซตทั้งหมด','2ⁿ','เมื่อเซตมีสมาชิก n ตัว'],
 ['กฎเดอมอร์แกน','(A ∪ B)ᶜ = Aᶜ ∩ Bᶜ',''],
 ['กฎเดอมอร์แกน','(A ∩ B)ᶜ = Aᶜ ∪ Bᶜ',''],
-['สมบัติสลับที่ของยูเนียน','A ∪ B = B ∪ A',''] ]},
+['สมบัติสลับที่ของยูเนียน','A ∪ B = B ∪ A','']]},
 {n:'ตรรกศาสตร์',i:'⚖️',items:[
 ['ถ้า...แล้ว...','p → q',''],
 ['และ','p ∧ q','เป็นจริงเมื่อ p และ q เป็นจริงทั้งคู่'],
 ['หรือ','p ∨ q','เป็นเท็จเมื่อ p และ q เป็นเท็จทั้งคู่'],
 ['กฎ De Morgan','¬(p ∨ q) = ¬p ∧ ¬q',''],
-['กฎการแจกแจง','p ∧ (q ∨ r) = (p ∧ q) ∨ (p ∧ r)',''] ]}
+['กฎการแจกแจง','p ∧ (q ∨ r) = (p ∧ q) ∨ (p ∧ r)','']]}
 ];
-function formulaMarkup(){return FORMULAS.map(g=>`<section class="formula-group"><h3>${g.i} ${g.n}</h3>${g.items.map(it=>`<div class="formula-item"><b>${it[0]}</b><code>${it[1]}</code>${it[2]?`<p class="formula-note">${it[2]}</p>`:''}</div>`).join('')}</section>`).join('')}
+
+function formulaMarkup(){
+ return FORMULAS.map(g=>`<section class="formula-group"><h3>${g.i} ${g.n}</h3>${g.items.map(it=>`<div class="formula-item"><b>${it[0]}</b><code>${it[1]}</code>${it[2]?`<p class="formula-note">${it[2]}</p>`:''}</div>`).join('')}</section>`).join('');
+}
+
 function openFormulas(){
  const resumeTimer=!!$('tl')&&!!(S.qs&&S.qs.length)&&!S.locked;
  clearInterval(S.tm);
- const timerBar=$('tb');if(resumeTimer&&timerBar){timerBar.style.transition='none';timerBar.style.width=(S.left/TIME*100)+'%';}
- const old=document.getElementById('formulaModal');if(old)old.remove();
- const modal=document.createElement('div');modal.className='formula-modal';modal.id='formulaModal';
+ const timerBar=$('tb');
+ if(resumeTimer&&timerBar){
+  timerBar.style.transition='none';
+  timerBar.style.width=(S.left/TIME*100)+'%';
+ }
+ const old=document.getElementById('formulaModal');
+ if(old)old.remove();
+ const modal=document.createElement('div');
+ modal.className='formula-modal';
+ modal.id='formulaModal';
  modal.innerHTML=`<div class="formula-panel"><div class="formula-head"><div><h2>📚 รวมสูตรคณิตศาสตร์</h2><p class="sub" style="margin:2px 0 0">ทบทวนสูตรทั้ง 6 หมวดก่อนเริ่มเล่น</p></div><button class="btn ghost" id="closeFormulas">✕ ปิด</button></div>${formulaMarkup()}</div>`;
  document.body.appendChild(modal);
- const close=()=>{modal.remove();if(resumeTimer){const bar=$('tb');if(bar){bar.style.transition=`width ${S.left}s linear`;requestAnimationFrame(()=>bar.style.width='0%')}runTimer()}};
+ const close=()=>{
+  modal.remove();
+  if(resumeTimer){
+   const bar=$('tb');
+   if(bar){
+    bar.style.transition=`width ${S.left}s linear`;
+    requestAnimationFrame(()=>bar.style.width='0%');
+   }
+   runTimer();
+  }
+ };
  document.getElementById('closeFormulas').onclick=close;
  modal.addEventListener('click',e=>{if(e.target===modal)close()});
 }
+
 function runTimer(){
  clearInterval(S.tm);
- runTimer();
+ S.tm=setInterval(()=>{
+  S.left--;
+  const e=$('tl');
+  if(e)e.textContent='⏱️ '+S.left;
+  if(S.left<=0)pick(-1);
+ },1000);
 }
-const $=id=>document.getElementById(id), app=$('app'), L=['ก','ข','ค','ง'];
-const shuf=x=>{x=x.slice();for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x};
+
+const $=id=>document.getElementById(id);
+const app=$('app');
+const L=['ก','ข','ค','ง'];
+const shuf=x=>{
+ x=x.slice();
+ for(let i=x.length-1;i>0;i--){
+  const j=Math.floor(Math.random()*(i+1));
+  [x[i],x[j]]=[x[j],x[i]];
+ }
+ return x;
+};
 const TIME=25;
 let S={};
-function home(){clearInterval(S.tm);app.innerHTML=`<div class="card hero"><div class="big">🧮</div><h1>MATH QUIZ</h1><h2>พิชิตสูตรคณิตศาสตร์</h2><p class="sub">จำให้แม่น ใช้ให้ถูก สอบได้แน่นอน!</p><div class="rules"><span>✅ ถูก +2</span><span>⭐ โบนัส +3</span><span>⏱️ ${TIME} วินาที/ข้อ</span><span>📚 30 ข้อ</span></div><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn ghost" id="viewFormulas">📚 ดูสูตรก่อนเล่น</button><button class="btn" id="go">▶ เริ่มเล่น</button></div></div>`;$('go').onclick=menu;$('viewFormulas').onclick=openFormulas}
-function menu(){clearInterval(S.tm);app.innerHTML=`<div class="card"><h2>เลือกหมวดที่ต้องการเล่น</h2><p class="sub">แต่ละหมวดมี 5 ข้อ (คะแนนเต็ม 11)</p><div class="grid">${CATS.map((c,i)=>`<button class="cat" style="background:${c.c}" data-i="${i}"><span class="ic">${c.i}</span><b>${c.n}</b><small>5 ข้อ</small></button>`).join('')}<button class="cat" style="background:linear-gradient(90deg,#ec4899,#f97316)" data-i="all"><span class="ic">🏆</span><b>ท้าทายทุกหมวด</b><small>30 ข้อ (เต็ม 66)</small></button></div><button class="btn ghost" id="bk">← กลับ</button></div>`;
-document.querySelectorAll('.cat').forEach(b=>b.onclick=()=>start(b.dataset.i));$('bk').onclick=home}
-function start(i){let src=i==='all'?CATS.flatMap(c=>c.q.map(q=>({q,cat:c}))):CATS[i].q.map(q=>({q,cat:CATS[i]}));
-const qs=shuf(src).map(({q,cat})=>{const o=shuf(q[2].map((t,k)=>({t,ok:k===0})));return{type:q[0],text:q[1],o,exp:q[3],bonus:!!q[4],cat}});
-S={mode:i,qs,idx:0,score:0,right:0,locked:false};show()}
-function show(){clearInterval(S.tm);const q=S.qs[S.idx],n=S.qs.length;S.locked=false;S.left=TIME;
-app.innerHTML=`<div class="card"><div class="top"><span class="pill">ข้อ ${S.idx+1}/${n}</span><span class="pill">⭐ ${S.score} คะแนน</span><span class="pill" id="tl">⏱️ ${S.left}</span><button class="btn ghost" id="viewFormulas" style="padding:6px 12px;font-size:13px">📚 ดูสูตร</button></div>
+let PLAYER={name:"",photo:""};
+
+function escapeText(v){
+ return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function avatarMarkup(){
+ return PLAYER.photo?`<img class="avatar" src="${PLAYER.photo}" alt="รูปผู้เล่น">`:`<div class="avatar" style="display:grid;place-items:center;font-size:28px">👤</div>`;
+}
+function profileBadge(){
+ return `<div class="profile-row">${avatarMarkup()}<span class="profile-name">${escapeText(PLAYER.name)}</span></div>`;
+}
+
+function initProfile(){
+ clearInterval(S.tm);
+ app.innerHTML=`<div class="card hero"><div class="big">🧮</div><h1>MATH QUIZ</h1><h2>ก่อนเริ่มเล่น ตั้งค่าโปรไฟล์ผู้เล่น</h2><p class="sub">ใส่ชื่อและเลือกรูปภาพเพื่อแสดงในเกม</p><div class="profile-box"><label for="playerName">ชื่อผู้เล่น</label><input id="playerName" type="text" maxlength="30" placeholder="กรอกชื่อของคุณ"><label for="playerPhoto">รูปโปรไฟล์</label><input id="playerPhoto" type="file" accept="image/*"><div class="profile-preview" id="photoPreview"><div class="avatar" style="display:grid;place-items:center;font-size:28px">👤</div><span class="sub" style="margin:0">ยังไม่ได้เลือกรูปภาพ</span></div></div><p style="margin-top:18px"><button class="btn" id="confirmProfile">ยืนยันและเข้าสู่เกม ▶</button></p></div>`;
+ let photo="";
+ $('playerPhoto').onchange=e=>{
+  const f=e.target.files&&e.target.files[0];
+  if(!f)return;
+  if(!f.type.startsWith('image/')){
+   alert('กรุณาเลือกไฟล์รูปภาพ');
+   e.target.value='';
+   return;
+  }
+  const reader=new FileReader();
+  reader.onload=()=>{
+   photo=String(reader.result||'');
+   $('photoPreview').innerHTML=`<img class="avatar" src="${photo}" alt="ตัวอย่างรูปโปรไฟล์"><span>เลือกรูปภาพแล้ว</span>`;
+  };
+  reader.readAsDataURL(f);
+ };
+ $('confirmProfile').onclick=()=>{
+  const name=$('playerName').value.trim();
+  if(!name){
+   alert('กรุณากรอกชื่อผู้เล่นก่อนครับ');
+   return;
+  }
+  PLAYER={name,photo};
+  home();
+ };
+}
+
+function home(){
+ clearInterval(S.tm);
+ app.innerHTML=`<div class="card hero">${profileBadge()}<div class="big">🧮</div><h1>MATH QUIZ</h1><h2>พิชิตสูตรคณิตศาสตร์</h2><p class="sub">จำให้แม่น ใช้ให้ถูก สอบได้แน่นอน!</p><div class="rules"><span>✅ ถูก +2</span><span>⭐ โบนัส +3</span><span>⏱️ ${TIME} วินาที/ข้อ</span><span>📚 30 ข้อ</span></div><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn ghost" id="viewFormulas">📚 ดูสูตรก่อนเล่น</button><button class="btn" id="go">▶ เริ่มเล่น</button></div></div>`;
+ $('go').onclick=menu;
+ $('viewFormulas').onclick=openFormulas;
+}
+
+function menu(){
+ clearInterval(S.tm);
+ app.innerHTML=`<div class="card">${profileBadge()}<h2>เลือกหมวดที่ต้องการเล่น</h2><p class="sub">แต่ละหมวดมี 5 ข้อ (คะแนนเต็ม 11)</p><div class="grid">${CATS.map((c,i)=>`<button class="cat" style="background:${c.c}" data-i="${i}"><span class="ic">${c.i}</span><b>${c.n}</b><small>5 ข้อ</small></button>`).join('')}<button class="cat" style="background:linear-gradient(90deg,#ec4899,#f97316)" data-i="all"><span class="ic">🏆</span><b>ท้าทายทุกหมวด</b><small>30 ข้อ (เต็ม 66)</small></button></div><button class="btn ghost" id="bk">← กลับ</button></div>`;
+ document.querySelectorAll('.cat').forEach(b=>b.onclick=()=>start(b.dataset.i));
+ $('bk').onclick=home;
+}
+
+function start(i){
+ let src=i==='all'?CATS.flatMap(c=>c.q.map(q=>({q,cat:c}))):CATS[i].q.map(q=>({q,cat:CATS[i]}));
+ const qs=shuf(src).map(({q,cat})=>{
+  const o=shuf(q[2].map((t,k)=>({t,ok:k===0})));
+  return{type:q[0],text:q[1],o,exp:q[3],bonus:!!q[4],cat};
+ });
+ S={mode:i,qs,idx:0,score:0,right:0,locked:false};
+ show();
+}
+
+function show(){
+ clearInterval(S.tm);
+ const q=S.qs[S.idx],n=S.qs.length;
+ S.locked=false;
+ S.left=TIME;
+ app.innerHTML=`<div class="card">${profileBadge()}<div class="top"><span class="pill">ข้อ ${S.idx+1}/${n}</span><span class="pill">⭐ ${S.score} คะแนน</span><span class="pill" id="tl">⏱️ ${S.left}</span><button class="btn ghost" id="viewFormulas" style="padding:6px 12px;font-size:13px">📚 ดูสูตร</button></div>
 <div class="bar"><i style="width:${S.idx/n*100}%"></i></div><div class="bar t"><i id="tb" style="width:100%"></i></div>
 <span class="tag" style="background:${q.cat.c}">${q.cat.i} ${q.cat.n}</span><span class="tag" style="background:var(--bl)">${q.type}</span>${q.bonus?'<span class="tag bonus">⭐ โบนัส +3</span>':''}
 <div class="q">${q.text}</div><div class="opts">${q.o.map((o,k)=>`<button class="opt" data-k="${k}"><span class="l">${L[k]}</span><span>${o.t}</span></button>`).join('')}</div><div id="fb"></div></div>`;
-document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(+b.dataset.k));
-$('viewFormulas').onclick=openFormulas;
-setTimeout(()=>{const t=$('tb');if(t)t.style.width='0%'},50);
-runTimer();
+ document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(+b.dataset.k));
+ $('viewFormulas').onclick=openFormulas;
+ setTimeout(()=>{
+  const t=$('tb');
+  if(t)t.style.width='0%';
+ },50);
+ runTimer();
 }
-function pick(k){if(S.locked)return;S.locked=true;clearInterval(S.tm);const q=S.qs[S.idx],btns=document.querySelectorAll('.opt'),good=k>=0&&q.o[k].ok;
-btns.forEach((b,i)=>{b.disabled=true;if(q.o[i].ok)b.classList.add('ok');else if(i===k)b.classList.add('no')});
-const pts=q.bonus?3:2;if(good){S.score+=pts;S.right++}
-const last=S.idx===S.qs.length-1;
-$('fb').innerHTML=`<div class="fb ${good?'ok':'no'}"><b>${good?'🎉 ถูกต้อง! +'+pts+' คะแนน':(k<0?'⏰ หมดเวลา! 0 คะแนน':'❌ ยังไม่ถูก 0 คะแนน')}</b><div style="margin-top:6px">💡 ${q.exp}</div></div><p class="c"><button class="btn" id="nx">${last?'ดูผลคะแนน 🏁':'ข้อต่อไป →'}</button></p>`;
-$('nx').onclick=()=>{if(last)result();else{S.idx++;show()}};$('nx').focus()}
-function result(){const mx=S.qs.reduce((s,q)=>s+(q.bonus?3:2),0),p=S.score/mx*100;
-const msg=p>=90?['🏆','สุดยอด! คุณคือเซียนสูตรคณิตศาสตร์'] :p>=70?['🌟','เก่งมาก! จำสูตรได้แม่นเกือบทั้งหมด']:p>=50?['👍','ดีเลย! ทบทวนอีกนิดจะยิ่งแม่น']:['💪','สู้ ๆ นะ! ลองอ่านสูตรแล้วเล่นอีกครั้ง'];
-app.innerHTML=`<div class="card hero"><div class="big">${msg[0]}</div><h2>จบเกมแล้ว!</h2><p class="score">${S.score}<small style="font-size:24px;color:var(--mut)"> / ${mx}</small></p><div class="stats"><div><b>${S.right}/${S.qs.length}</b>ตอบถูก</div><div><b>${Math.round(p)}%</b>คะแนนที่ได้</div><div><b>${S.qs.length-S.right}</b>ตอบผิด</div></div><p style="font-size:18px">${msg[1]}</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn alt" id="rp">🔄 เล่นอีกครั้ง</button><button class="btn" id="hm">🏠 กลับหน้าหลัก</button></div></div>`;
-$('rp').onclick=()=>start(S.mode);$('hm').onclick=home}
-home();
+
+function pick(k){
+ if(S.locked)return;
+ S.locked=true;
+ clearInterval(S.tm);
+ const q=S.qs[S.idx],btns=document.querySelectorAll('.opt'),good=k>=0&&q.o[k].ok;
+ btns.forEach((b,i)=>{
+  b.disabled=true;
+  if(q.o[i].ok)b.classList.add('ok');
+  else if(i===k)b.classList.add('no');
+ });
+ const pts=q.bonus?3:2;
+ if(good){S.score+=pts;S.right++}
+ const last=S.idx===S.qs.length-1;
+ $('fb').innerHTML=`<div class="fb ${good?'ok':'no'}"><b>${good?'🎉 ถูกต้อง! +'+pts+' คะแนน':(k<0?'⏰ หมดเวลา! 0 คะแนน':'❌ ยังไม่ถูก 0 คะแนน')}</b><div style="margin-top:6px">💡 ${q.exp}</div></div><p class="c"><button class="btn" id="nx">${last?'ดูผลคะแนน 🏁':'ข้อต่อไป →'}</button></p>`;
+ $('nx').onclick=()=>{
+  if(last)result();
+  else{S.idx++;show()}
+ };
+ $('nx').focus();
+}
+
+function result(){
+ const mx=S.qs.reduce((s,q)=>s+(q.bonus?3:2),0),p=S.score/mx*100;
+ const msg=p>=90?['🏆','สุดยอด! คุณคือเซียนสูตรคณิตศาสตร์']:p>=70?['🌟','เก่งมาก! จำสูตรได้แม่นเกือบทั้งหมด']:p>=50?['👍','ดีเลย! ทบทวนอีกนิดจะยิ่งแม่น']:['💪','สู้ ๆ นะ! ลองอ่านสูตรแล้วเล่นอีกครั้ง'];
+ app.innerHTML=`<div class="card hero">${profileBadge()}<div class="big">${msg[0]}</div><h2>จบเกมแล้ว!</h2><p class="score">${S.score}<small style="font-size:24px;color:var(--mut)"> / ${mx}</small></p><div class="stats"><div><b>${S.right}/${S.qs.length}</b>ตอบถูก</div><div><b>${Math.round(p)}%</b>คะแนนที่ได้</div><div><b>${S.qs.length-S.right}</b>ตอบผิด</div></div><p style="font-size:18px">${msg[1]}</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn alt" id="rp">🔄 เล่นอีกครั้ง</button><button class="btn" id="hm">🏠 กลับหน้าหลัก</button></div></div>`;
+ $('rp').onclick=()=>start(S.mode);
+ $('hm').onclick=home;
+}
+
+initProfile();
 </script>
 </body>
 </html>
