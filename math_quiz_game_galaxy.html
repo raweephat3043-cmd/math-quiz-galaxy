@@ -84,12 +84,12 @@ h2{margin:0 0 6px}
 </style>
 </head>
 <body>
-<div id="app"><div class="card hero"><div class="big">🧮</div><h2>กำลังโหลดเกม...</h2><p class="sub">หากหน้านี้ค้าง ให้เปิดไฟล์ด้วย Safari</p></div></div>
+<div id="app"><div class="card hero"><div class="big">🧮</div><h2>กำลังโหลดเกม...</h2><p class="sub">หากหน้านี้ค้าง ให้ลิงค์นี้ด้วยเบราว์เซอร์</p></div></div>
 
 <script>
 window.addEventListener('error', function(event){
   var root=document.getElementById('app');
-  if(root) root.innerHTML='<div class="card hero"><div class="big">⚠️</div><h2>เกิดข้อผิดพลาดในการเปิดเกม</h2><p class="sub">ลองเปิดไฟล์นี้ด้วย Safari โดยตรง และตรวจสอบว่าอนุญาต JavaScript แล้ว</p><p style="font-size:13px;overflow-wrap:anywhere">'+(event.message||'ไม่สามารถเริ่มเกมได้')+'</p></div>';
+  if(root) root.innerHTML='<div class="card hero"><div class="big">⚠️</div><h2>เกิดข้อผิดพลาดในการเปิดเกม</h2><p class="sub">ลองเปิดไฟล์นี้ด้วยเบราว์เซอร์โดยตรง และตรวจสอบว่าอนุญาต JavaScript แล้ว</p><p style="font-size:13px;overflow-wrap:anywhere">'+(event.message||'ไม่สามารถเริ่มเกมได้')+'</p></div>';
 });
 </script>
 
